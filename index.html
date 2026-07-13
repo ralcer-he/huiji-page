@@ -10,10 +10,25 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;600;700&family=Noto+Serif+SC:wght@400;500;600;700&display=swap" rel="stylesheet" />
     <title>慧记</title>
-    <script type="module" crossorigin src="/assets/main-DhQOePE7.js"></script>
-    <link rel="stylesheet" crossorigin href="/assets/main-BfnMZBXf.css">
-  <link rel="manifest" href="/manifest.webmanifest"><script id="vite-plugin-pwa:register-sw" src="/registerSW.js"></script></head>
+    <script>
+      (function() {
+        var host = window.location.hostname;
+        var isTauri = host === 'tauri.localhost' || window.location.protocol === 'tauri:';
+        if (isTauri && 'serviceWorker' in navigator) {
+          navigator.serviceWorker.getRegistrations().then(function(regs) {
+            regs.forEach(function(r) { r.unregister(); });
+          }).catch(function() {});
+          if ('caches' in window) {
+            caches.keys().then(function(keys) {
+              keys.forEach(function(k) { caches.delete(k); });
+            }).catch(function() {});
+          }
+        }
+      })();
+    </script>
+  </head>
   <body>
     <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>

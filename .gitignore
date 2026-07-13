@@ -1,0 +1,13 @@
+node_modules/
+dist/
+android/
+src-tauri/
+*.exe
+*.apk
+*.log
+screenshots/
+test_screenshots/
+shots/
+*.cjs
+*.py
+*.zip
